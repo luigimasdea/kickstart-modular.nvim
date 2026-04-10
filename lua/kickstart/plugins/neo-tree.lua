@@ -14,6 +14,7 @@ return {
   lazy = false,
   keys = {
     { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '<C-n>', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
   ---@module 'neo-tree'
   ---@type neotree.Config
@@ -22,6 +23,7 @@ return {
       window = {
         mappings = {
           ['\\'] = 'close_window',
+          ['<C-n>'] = 'close_window',
         },
       },
     },
