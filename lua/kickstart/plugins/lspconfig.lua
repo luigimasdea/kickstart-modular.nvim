@@ -126,6 +126,10 @@ return {
         -- gopls = {},
         pyright = {},
         -- rust_analyzer = {},
+        html = {},
+        cssls = {},
+        ts_ls = {},
+        matlab_ls = {},
 
         stylua = {}, -- Used to format Lua code
 
