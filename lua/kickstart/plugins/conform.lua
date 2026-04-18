@@ -41,6 +41,7 @@ return {
         css = { 'prettier' },
         json = { 'prettier' },
         markdown = { 'prettier' },
+        matlab = { 'mh-style' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --

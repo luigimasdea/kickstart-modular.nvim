@@ -76,4 +76,38 @@ map('n', '<leader>x', ':bdelete<CR>', { desc = 'Close Buffer' })
 map({ 'n', 'i', 'v' }, '<C-s>', '<cmd> w <cr>')
 map({ 'n', 'i', 'v' }, '<C-q>', '<cmd> q <cr>')
 
+-- MATLAB
+-- Inizializza una variabile globale per ricordare "dove" sta girando MATLAB
+_G.matlab_terminal_channel = nil
+
+-- 1. Comando per aprire MATLAB in una finestra laterale
+vim.api.nvim_create_user_command('MatlabOpen', function()
+  -- Apre uno split verticale
+  vim.cmd 'botright 15split'
+  -- Avvia MATLAB senza interfaccia grafica e senza splash screen
+  vim.cmd 'terminal matlab -nodesktop -nosplash'
+  -- Salva l'ID del canale del terminale per potergli inviare testo dopo
+  _G.matlab_terminal_channel = vim.b.terminal_job_id
+  -- Torna alla finestra del codice
+  vim.cmd 'wincmd p'
+end, { desc = 'Open MATLAB Terminal' })
+
+-- 2. Scorciatoia per "sparare" lo script corrente dentro il terminale aperto
+vim.keymap.set('n', '<leader>r', function()
+  if _G.matlab_terminal_channel then
+    -- Prende il percorso assoluto del file che stai modificando
+    local filepath = vim.fn.expand '%:p'
+    -- Invia il comando run() al terminale nascosto, simulando la pressione di Invio (\n)
+    vim.api.nvim_chan_send(_G.matlab_terminal_channel, "run('" .. filepath .. "')\n")
+  else
+    print "Error: MATLAB isn't open. Run :MatlabOpen before."
+  end
+end, { desc = 'Run script in the REPL' })
+
+-- Autosave
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'FocusLost' }, {
+  pattern = '*',
+  callback = function() vim.cmd 'silent! update' end,
+})
+
 -- vim: ts=2 sts=2 sw=2 et
