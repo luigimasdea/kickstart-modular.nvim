@@ -85,7 +85,7 @@ vim.api.nvim_create_user_command('MatlabOpen', function()
   -- Apre uno split verticale
   vim.cmd 'botright 15split'
   -- Avvia MATLAB senza interfaccia grafica e senza splash screen
-  vim.cmd 'terminal matlab -nodesktop -nosplash'
+  vim.cmd 'terminal env _JAVA_AWT_WM_NONREPARENTING=1 GDK_BACKEND=x11 LD_PRELOAD="/usr/lib/libstdc++.so.6:/usr/lib/libgcc_s.so.1:/usr/lib/libfreetype.so.6:/usr/lib/libglib-2.0.so.0" /opt/MATLAB/R2023a/bin/matlab -nodesktop -nosplash'
   -- Salva l'ID del canale del terminale per potergli inviare testo dopo
   _G.matlab_terminal_channel = vim.b.terminal_job_id
   -- Torna alla finestra del codice
