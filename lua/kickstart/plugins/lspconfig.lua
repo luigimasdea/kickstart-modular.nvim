@@ -130,6 +130,7 @@ return {
         cssls = {},
         ts_ls = {},
         matlab_ls = {},
+        tinymist = {},
 
         stylua = {}, -- Used to format Lua code
 
