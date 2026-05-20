@@ -131,6 +131,7 @@ return {
         ts_ls = {},
         matlab_ls = {},
         tinymist = {},
+        astro = {},
 
         stylua = {}, -- Used to format Lua code
 

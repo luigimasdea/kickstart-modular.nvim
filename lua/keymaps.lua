@@ -105,9 +105,13 @@ vim.keymap.set('n', '<leader>r', function()
 end, { desc = 'Run script in the REPL' })
 
 -- Autosave
-vim.api.nvim_create_autocmd({ 'InsertLeave', 'FocusLost' }, {
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'FocusLost', 'TextChanged' }, {
   pattern = '*',
-  callback = function() vim.cmd 'silent! update' end,
+  callback = function()
+    -- Verifichiamo che il buffer sia modificabile e abbia un nome file
+    -- per evitare errori con plugin, terminali o buffer temporanei
+    if vim.bo.modified and vim.fn.empty(vim.fn.expand '%:t') == 0 then vim.cmd 'silent! update' end
+  end,
 })
 
 -- vim: ts=2 sts=2 sw=2 et

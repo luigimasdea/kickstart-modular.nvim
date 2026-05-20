@@ -3,6 +3,12 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- Tabulazione a 2 spazi
+vim.opt.expandtab = true -- Converte le tabulazioni in spazi veri e propri
+vim.opt.shiftwidth = 2 -- Numero di spazi usati per l'auto-indentazione (es. quando premi >> o <<)
+vim.opt.tabstop = 2 -- Numero di spazi visivi che compongono un singolo carattere <Tab>
+vim.opt.softtabstop = 2 -- Numero di spazi che il tasto Tab o Backspace inserisce/cancella in un colpo solo
+
 -- Make line numbers default
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.

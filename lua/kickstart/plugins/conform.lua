@@ -43,6 +43,7 @@ return {
         markdown = { 'prettier' },
         matlab = { 'mh-style' },
         typst = { 'prettypst' },
+        astro = { 'prettier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
